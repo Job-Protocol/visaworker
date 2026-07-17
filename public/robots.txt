@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /auth
+Disallow: /projects
+Disallow: /api
+
+Sitemap: https://visaworker.ai/sitemap.xml

@@ -1,0 +1,129 @@
+import type { ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { SealMark } from "@/components/SealMark";
+import { GitHubStarInline } from "@/components/GitHubStarButton";
+
+type CurrentPage = "home" | "open-source" | "for-lawyers" | null;
+
+interface SiteHeaderProps {
+  current?: CurrentPage;
+  cta?: {
+    label: string;
+    shortLabel?: string;
+    href: string;
+    external?: boolean;
+  };
+  /** Optional custom node rendered in place of the default crimson CTA button. */
+  ctaSlot?: ReactNode;
+}
+
+const DEFAULT_CTA = {
+  label: "Start for free",
+  shortLabel: "Start",
+  href: "/auth",
+  external: false,
+};
+
+/**
+ * Two-tier editorial masthead used across all marketing pages.
+ * Utility strip (GitHub · Open source · FAQ / For lawyers · Sign in) sits above
+ * the main row with wordmark + primary anchors + CTA. Highlights the active page.
+ */
+export function SiteHeader({ current = null, cta = DEFAULT_CTA, ctaSlot }: SiteHeaderProps) {
+  const isActive = (page: CurrentPage) =>
+    current === page ? "text-crimson" : "hover:text-ink";
+
+  const primaryActive = (page: CurrentPage) =>
+    current === page ? "text-crimson" : "text-ink/70 hover:text-crimson";
+
+  const CtaLink = () => {
+    const inner = (
+      <>
+        <span className="sm:hidden">{cta.shortLabel ?? cta.label}</span>
+        <span className="hidden sm:inline">{cta.label}</span>
+        <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+      </>
+    );
+    if (cta.external || cta.href.startsWith("#") || cta.href.startsWith("http")) {
+      return (
+        <a href={cta.href} {...(cta.external ? { target: "_blank", rel: "noreferrer" } : {})}>
+          {inner}
+        </a>
+      );
+    }
+    return <Link to={cta.href}>{inner}</Link>;
+  };
+
+  return (
+    <header className="relative z-30 border-b border-ink/10 bg-paper/80 backdrop-blur-sm">
+      <div className="mx-auto max-w-[1400px] px-4 sm:px-6 md:px-10">
+        {/* Utility strip */}
+        <div className="hidden items-center justify-between border-b border-ink/5 py-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-ink/55 md:flex">
+          <div className="flex items-center gap-5">
+            <GitHubStarInline />
+            <span className="h-3 w-px bg-ink/10" aria-hidden />
+            <Link to="/open-source" className={`transition-colors ${isActive("open-source")}`}>
+              Open source
+            </Link>
+            <span className="h-3 w-px bg-ink/10" aria-hidden />
+            <Link to="/" hash="faq" className="transition-colors hover:text-ink">
+              FAQ
+            </Link>
+          </div>
+          <div className="flex items-center gap-5">
+            <Link to="/for-lawyers" className={`transition-colors ${isActive("for-lawyers")}`}>
+              For lawyers
+            </Link>
+            <span className="h-3 w-px bg-ink/10" aria-hidden />
+            <Link to="/auth" className="transition-colors hover:text-ink">
+              Sign in
+            </Link>
+          </div>
+        </div>
+
+        {/* Main nav */}
+        <div className="flex items-center justify-between gap-8 py-4 sm:py-5">
+          <div className="flex items-center gap-10 lg:gap-14">
+            <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+              <SealMark className="h-8 w-8 shrink-0 sm:h-10 sm:w-10" />
+              <span className="truncate font-serif text-[20px] leading-none tracking-tight text-ink sm:text-[24px] md:text-[26px]">
+                visaworker<span className="italic text-crimson">.ai</span>
+              </span>
+            </Link>
+            <nav className="hidden items-center gap-8 text-[12px] font-semibold uppercase tracking-[0.22em] lg:flex">
+              <Link to="/" hash="how" className={`nav-link transition-colors ${primaryActive(null)}`}>
+                Process
+              </Link>
+              <Link to="/" hash="what" className={`nav-link transition-colors ${primaryActive(null)}`}>
+                Output
+              </Link>
+              <Link to="/" hash="pricing" className={`nav-link transition-colors ${primaryActive(null)}`}>
+                Pricing
+              </Link>
+            </nav>
+          </div>
+
+          <div className="flex shrink-0 items-center gap-3">
+            <Link
+              to="/auth"
+              className="text-sm font-medium text-ink/70 hover:text-ink sm:block md:hidden"
+            >
+              Sign in
+            </Link>
+            {ctaSlot ?? (
+              <Button
+                asChild
+                size="sm"
+                className="rounded-none border-b-2 border-crimson-deep bg-crimson px-3 py-4 text-[10px] font-bold uppercase tracking-[0.14em] text-paper shadow-none transition-all hover:-translate-y-px hover:bg-crimson-deep sm:px-5 sm:py-5 sm:text-[11px] sm:tracking-[0.18em]"
+              >
+                <CtaLink />
+              </Button>
+            )}
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+}

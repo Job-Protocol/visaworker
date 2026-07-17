@@ -1,0 +1,3 @@
+
+[auth.rate_limit]
+email_sent = 30

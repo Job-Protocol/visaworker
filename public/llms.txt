@@ -1,0 +1,15 @@
+# visaworker.ai
+
+> Turn your career into a filing-ready O-1A, EB-1A, or NIW petition — drafted with the rigor of a top immigration firm, in days instead of months. Flat $249 per case.
+
+## Pages
+
+- [Home](/): O-1A, EB-1A & NIW petitions drafted in days, not months.
+- [For immigration lawyers](/for-lawyers): A subscription workspace for firms to draft petitions faster.
+- [Live demo](/demo): Open the real workspace on a seeded EB-1A petition for Elon Musk.
+- [Privacy Policy](/privacy): How visaworker.ai collects, uses, and protects your data.
+- [Terms of Service](/terms): Terms governing use of the service.
+
+## Optional
+
+- [Shared letter view](/letter/$token): Read-only public view of a generated letter.

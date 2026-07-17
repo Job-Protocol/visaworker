@@ -1,0 +1,43 @@
+# .gitignore for the PUBLIC VisaWorker repo.
+#
+# `scripts/build-public-repo.sh` copies the working tree into a sibling
+# directory and drops this in as `.gitignore`. The main repo keeps its own
+# `.gitignore`; this file only ships to the OSS mirror.
+
+# Enterprise carve-out — never ships to the public repo
+src/ee/
+ee/
+
+# Internal-only assets and process files
+.lovable/
+AGENTS.md
+public/brand/
+public/product-hunt/
+
+# Node / build outputs (mirror of standard ignores)
+node_modules/
+dist/
+.output/
+.tanstack/
+.wrangler/
+.vinxi/
+.turbo/
+.cache/
+
+# Generated route tree — regenerated from the route files by the TanStack Start
+# plugin on every `vite build`/`vite dev`. Not committed in the OSS mirror so it
+# can never reference EE routes that were stripped from the public build.
+src/routeTree.gen.ts
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log

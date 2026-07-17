@@ -1,0 +1,30 @@
+{
+  "$comment": "Single source of truth for what belongs to the enterprise edition at the database layer. Consumed by scripts/generate-open-types.mjs and scripts/dump-open-schema.sh. Keep this in sync whenever you add an EE-only table, function, or column. NOTE: token metering (project_billing / consume_case_tokens) and letter sharing (letter_tokens / letter_events / letter_public_sign_pdf) are OPEN features used by the core agent loop and letters module, so they intentionally ship in the open build. Only monetization/growth surfaces (Stripe billing, referrals, payouts, lawyer intros, lifecycle email, demo reset, public-letter signing endpoints) are stripped here.",
+  "tables": [
+    "billing_events",
+    "pending_checkouts",
+    "payouts",
+    "referrals",
+    "referral_codes",
+    "lawyer_intro_requests",
+    "lifecycle_email_sends"
+  ],
+  "functions": [
+    "mint_referral_code",
+    "lookup_referrer_by_code",
+    "apply_referral_credit",
+    "reverse_referral_credit",
+    "get_demo_reset_secret",
+    "letter_public_get",
+    "letter_public_render",
+    "letter_public_comment",
+    "letter_public_sign",
+    "seed_demo_letters",
+    "reset_demo_project"
+  ],
+  "columns": {
+    "$comment": "Columns living on OSS tables that leak EE concepts. Stripped from generated types; keep DB column but the OSS build must not read them.",
+    "profiles": ["credit_cents", "paid_referral_count", "stripe_customer_id", "payout_stripe_account_id"],
+    "projects": ["stripe_price_tier", "referrer_user_id"]
+  }
+}

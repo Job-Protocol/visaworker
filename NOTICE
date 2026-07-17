@@ -1,0 +1,31 @@
+VisaWorker
+Copyright (c) VisaWorker, Inc.
+
+This product includes software developed by third parties, distributed under
+their respective licenses. Notable third-party components:
+
+- SwiftLaTeX (BSD-3-Clause) — `public/swiftlatex/`
+  https://github.com/SwiftLaTeX/SwiftLaTeX
+
+- shadcn/ui component patterns (MIT) — various files under `src/components/ui/`
+  https://github.com/shadcn-ui/ui
+
+- Radix UI primitives (MIT) — `@radix-ui/*` npm packages
+
+- TanStack Router / Query / Start (MIT) — `@tanstack/*` npm packages
+
+- TipTap editor (MIT) — `@tiptap/*` npm packages
+
+Dual-licensed dependencies are used under their permissive option:
+
+- JSZip — used under the MIT license (dual-licensed "MIT OR GPL-3.0-or-later").
+- DOMPurify — used under the Apache-2.0 license (dual-licensed
+  "MPL-2.0 OR Apache-2.0").
+
+Full transitive license report can be regenerated with:
+
+    bunx license-checker-rseidelsohn --production --summary
+
+The `ee/` and `src/ee/` directories are NOT covered by the repository's
+Business Source License and are governed by a separate proprietary license.
+See `ee/LICENSE`.

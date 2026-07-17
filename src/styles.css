@@ -1,0 +1,388 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * visaworker.ai — Americana editorial. Deep navy ink, ivory paper,
+ * crimson accent, brass gold detail. Cormorant Garamond display + Karla body.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --font-serif: "Instrument Serif", "Cormorant Garamond", "Times New Roman", Georgia, serif;
+  --font-sans: "Work Sans", "Karla", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Monaco, Consolas, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brass: var(--navy);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-crimson: var(--crimson);
+  --color-crimson-deep: var(--crimson-deep);
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-gold: var(--gold);
+  --color-parchment: var(--parchment);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.375rem;
+
+  /* Americana palette in OKLCH */
+  --paper: oklch(0.982 0.006 85);          /* ivory */
+  --parchment: oklch(0.955 0.012 82);      /* warm off-white */
+  --ink: oklch(0.19 0.04 255);             /* near-black navy */
+  --navy: oklch(0.27 0.09 258);            /* federal navy #0A2540-ish */
+  --navy-deep: oklch(0.18 0.07 260);       /* midnight navy */
+  --crimson: oklch(0.51 0.19 27);          /* Old Glory red #B22234 */
+  --crimson-deep: oklch(0.42 0.17 27);
+  --gold: oklch(0.78 0.13 82);             /* brass leaf */
+  --brass: var(--gold);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--navy);
+  --primary-foreground: var(--paper);
+
+  --secondary: var(--parchment);
+  --secondary-foreground: var(--ink);
+
+  --muted: oklch(0.945 0.008 85);
+  --muted-foreground: oklch(0.48 0.02 258);
+
+  --accent: var(--crimson);
+  --accent-foreground: oklch(0.99 0 0);
+
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+
+  --border: oklch(0.9 0.012 82);
+  --input: oklch(0.9 0.012 82);
+  --ring: var(--navy);
+
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--navy);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--parchment);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: oklch(0.9 0.012 82);
+  --sidebar-ring: var(--navy);
+
+  /* Signature gradients + shadows */
+  --gradient-flag: linear-gradient(135deg, oklch(0.22 0.08 258) 0%, oklch(0.35 0.11 258) 55%, oklch(0.51 0.19 27) 100%);
+  --gradient-ink: linear-gradient(180deg, oklch(0.24 0.08 258) 0%, oklch(0.15 0.06 260) 100%);
+  --gradient-parchment: linear-gradient(180deg, var(--paper) 0%, var(--parchment) 100%);
+  --shadow-plate: 0 30px 60px -30px oklch(0.19 0.04 255 / 0.35), 0 8px 20px -12px oklch(0.19 0.04 255 / 0.18);
+  --shadow-seal: 0 0 0 1px oklch(0.78 0.13 82 / 0.4), 0 12px 40px -16px oklch(0.51 0.19 27 / 0.35);
+}
+
+.dark {
+  --paper: oklch(0.16 0.03 260);
+  --parchment: oklch(0.2 0.04 260);
+  --ink: oklch(0.96 0.008 85);
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.21 0.04 260);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.21 0.04 260);
+  --popover-foreground: var(--ink);
+  --primary: var(--paper);
+  --primary-foreground: var(--navy);
+  --secondary: oklch(0.26 0.04 260);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.26 0.04 260);
+  --muted-foreground: oklch(0.72 0.02 85);
+  --accent: var(--crimson);
+  --accent-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv02";
+    background-image:
+      radial-gradient(ellipse at top left, oklch(0.27 0.09 258 / 0.04), transparent 55%),
+      radial-gradient(ellipse at bottom right, oklch(0.51 0.19 27 / 0.035), transparent 60%);
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.015em;
+    font-weight: 500;
+  }
+  h1 { font-weight: 400; }
+}
+
+@utility font-serif {
+  font-family: var(--font-serif);
+}
+@utility font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Americana decorative utilities */
+@utility bg-flag {
+  background-image: var(--gradient-flag);
+}
+@utility bg-ink-gradient {
+  background-image: var(--gradient-ink);
+}
+@utility bg-parchment {
+  background-image: var(--gradient-parchment);
+}
+@utility shadow-plate {
+  box-shadow: var(--shadow-plate);
+}
+@utility shadow-seal {
+  box-shadow: var(--shadow-seal);
+}
+
+/* Subtle stars pattern for hero panels */
+@utility bg-stars {
+  background-image:
+    radial-gradient(circle at 20% 30%, oklch(1 0 0 / 0.08) 0.5px, transparent 1.2px),
+    radial-gradient(circle at 70% 65%, oklch(1 0 0 / 0.06) 0.5px, transparent 1.2px),
+    radial-gradient(circle at 45% 85%, oklch(1 0 0 / 0.05) 0.4px, transparent 1px);
+  background-size: 120px 140px, 180px 200px, 90px 110px;
+}
+
+/* Fine paper-fiber texture (SVG noise, inlined) */
+@utility bg-paper-grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12  0 0 0 0 0.14  0 0 0 0 0.22  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Small caps used for eyebrow labels */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Hairline divider with gold center */
+@utility rule-gold {
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+
+/* Hairline divider with navy center */
+@utility rule-navy {
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--navy), transparent);
+}
+
+@keyframes stripe-slide {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 0; }
+}
+@utility stripe-anim {
+  background-image: repeating-linear-gradient(45deg, oklch(0.51 0.19 27 / 0.9) 0 10px, transparent 10px 20px);
+  animation: stripe-slide 8s linear infinite;
+}
+
+/* ---------- Strategy / Section pane editors ---------- */
+:is(.strategy-editor, .section-editor) {
+  font-family: var(--font-sans);
+  color: var(--foreground);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+:is(.strategy-editor, .section-editor) > * + * { margin-top: 0.75rem; }
+:is(.strategy-editor, .section-editor) h1,
+:is(.strategy-editor, .section-editor) h2,
+:is(.strategy-editor, .section-editor) h3 {
+  font-family: var(--font-serif);
+  color: var(--foreground);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+:is(.strategy-editor, .section-editor) h1 { font-size: 1.65rem; margin-top: 1.75rem; }
+:is(.strategy-editor, .section-editor) h2 {
+  font-size: 1.3rem;
+  margin-top: 1.75rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--navy) 30%, transparent);
+}
+:is(.strategy-editor, .section-editor) h3 {
+  font-size: 1.05rem;
+  margin-top: 1.25rem;
+  color: color-mix(in oklab, var(--navy) 70%, var(--foreground));
+}
+:is(.strategy-editor, .section-editor) h1:first-child,
+:is(.strategy-editor, .section-editor) h2:first-child,
+:is(.strategy-editor, .section-editor) h3:first-child { margin-top: 0; }
+
+:is(.strategy-editor, .section-editor) p {
+  color: color-mix(in oklab, var(--foreground) 85%, transparent);
+}
+:is(.strategy-editor, .section-editor) strong { color: var(--foreground); font-weight: 600; }
+:is(.strategy-editor, .section-editor) em { font-family: var(--font-serif); font-style: italic; }
+
+:is(.strategy-editor, .section-editor) a {
+  color: var(--navy);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in oklab, var(--navy) 40%, transparent);
+  text-underline-offset: 3px;
+}
+
+:is(.strategy-editor, .section-editor) ul,
+:is(.strategy-editor, .section-editor) ol { padding-left: 1.4rem; }
+:is(.strategy-editor, .section-editor) ul { list-style: disc; }
+:is(.strategy-editor, .section-editor) ul ul { list-style: circle; }
+:is(.strategy-editor, .section-editor) ul ul ul { list-style: square; }
+:is(.strategy-editor, .section-editor) ol { list-style: decimal; }
+:is(.strategy-editor, .section-editor) ul > li,
+:is(.strategy-editor, .section-editor) ol > li { margin: 0.3rem 0; padding-left: 0.25rem; }
+:is(.strategy-editor, .section-editor) ul > li::marker { color: var(--navy); }
+:is(.strategy-editor, .section-editor) ol > li::marker { color: var(--navy); font-variant-numeric: tabular-nums; }
+:is(.strategy-editor, .section-editor) li > p { margin: 0; }
+
+:is(.strategy-editor, .section-editor) blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 2px solid color-mix(in oklab, var(--crimson) 60%, transparent);
+  color: color-mix(in oklab, var(--foreground) 75%, transparent);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.02rem;
+}
+
+:is(.strategy-editor, .section-editor) hr {
+  border: none;
+  height: 1px;
+  margin: 1.75rem auto;
+  width: 60%;
+  background-image: linear-gradient(to right, transparent, color-mix(in oklab, var(--navy) 50%, transparent), transparent);
+}
+
+:is(.strategy-editor, .section-editor) code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  background: color-mix(in oklab, var(--foreground) 8%, transparent);
+  color: color-mix(in oklab, var(--navy) 80%, var(--foreground));
+}
+:is(.strategy-editor, .section-editor) pre {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  padding: 0.9rem 1rem;
+  border-radius: 6px;
+  background: color-mix(in oklab, var(--foreground) 6%, transparent);
+  border: 1px solid color-mix(in oklab, var(--foreground) 10%, transparent);
+  overflow-x: auto;
+}
+:is(.strategy-editor, .section-editor) pre code { background: transparent; padding: 0; color: inherit; }
+
+/* Task lists (TipTap) */
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0.25rem;
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 0.35rem 0;
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li > label {
+  margin-top: 0.28rem;
+  flex-shrink: 0;
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li > label > input[type="checkbox"] {
+  appearance: none;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 3px;
+  border: 1px solid color-mix(in oklab, var(--navy) 55%, transparent);
+  background: transparent;
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease;
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li > label > input[type="checkbox"]::before {
+  content: "";
+  width: 0.55rem;
+  height: 0.55rem;
+  transform: scale(0);
+  transition: transform 120ms ease;
+  background: var(--navy);
+  border-radius: 1px;
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li > label > input[type="checkbox"]:checked {
+  border-color: var(--navy);
+  background: color-mix(in oklab, var(--navy) 15%, transparent);
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li > label > input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li > div { flex: 1; min-width: 0; }
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li[data-checked="true"] > div,
+:is(.strategy-editor, .section-editor) ul[data-type="taskList"] li[data-checked="true"] > div * {
+  color: color-mix(in oklab, var(--foreground) 45%, transparent);
+  text-decoration: line-through;
+  text-decoration-color: color-mix(in oklab, var(--foreground) 30%, transparent);
+}
+
+/* Placeholder */
+:is(.strategy-editor, .section-editor) p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: color-mix(in oklab, var(--foreground) 40%, transparent);
+  font-style: italic;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+

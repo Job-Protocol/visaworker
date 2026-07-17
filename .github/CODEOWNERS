@@ -1,0 +1,15 @@
+# Every PR gets a review from the core team.
+* @visaworker/core
+
+# Enterprise boundary — extra care required.
+/src/ee/                 @visaworker/core
+/ee/                     @visaworker/core
+/docs/oss/               @visaworker/core
+/scripts/build-public-repo.sh   @visaworker/core
+/scripts/dump-open-schema.sh    @visaworker/core
+/scripts/generate-open-types.mjs @visaworker/core
+
+# Security-sensitive surface.
+/src/integrations/supabase/       @visaworker/core
+/src/lib/ai-key-crypto.server.ts  @visaworker/core
+/src/routes/api/                  @visaworker/core
