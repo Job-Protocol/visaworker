@@ -1,7 +1,7 @@
 # Trademarks
 
 "VisaWorker", the VisaWorker logo, and the `visaworker.ai` wordmark are
-trademarks of VisaWorker, Inc. and are **not** licensed under the Business
+trademarks of Job Protocol Labs, Ltd. and are **not** licensed under the Business
 Source License that covers this repository's source code.
 
 ## What this means for forks and self-hosters
@@ -18,7 +18,7 @@ You may **not**:
 - Use the name "VisaWorker", the VisaWorker logo, or any confusingly similar
   mark to identify your fork, hosted service, product, or company.
 - Use VisaWorker branding in a way that suggests endorsement, affiliation, or
-  sponsorship by VisaWorker, Inc.
+  sponsorship by Job Protocol Labs, Ltd.
 - Register domain names, social media handles, or app store listings that
   incorporate "VisaWorker" or confusingly similar variants.
 

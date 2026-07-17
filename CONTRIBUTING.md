@@ -38,16 +38,18 @@ time is wasted.
 
 By submitting a pull request, you agree that your contribution is licensed
 under the same terms as the file you're modifying (BUSL 1.1 for files
-outside `ee/`), and that VisaWorker, Inc. may relicense your contribution
+outside `ee/`), and that Job Protocol Labs, Ltd. may relicense your contribution
 under the Change License (Apache 2.0) when that transition occurs.
 
 ## Code style
 
-- TypeScript, strict mode. Run `bunx tsgo` before submitting.
-- Prettier config lives in `.prettierrc`. Run `bunx prettier --write .`
-  before submitting.
+- TypeScript, strict mode. Run `bunx tsc --noEmit` before submitting.
+- Match the surrounding code's style. Formatting is not enforced in CI, so
+  please don't run `prettier --write .` across the repo — it would reformat
+  unrelated files. Keep your diff focused on your change.
 - Follow the existing file/route conventions — this is a TanStack Start
-  project; see `AGENTS.md` for the important stack rules.
+  project; see [`docs/architecture.md`](./docs/architecture.md) for the stack
+  overview.
 
 ## Trademark
 

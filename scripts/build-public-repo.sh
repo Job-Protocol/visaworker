@@ -68,7 +68,7 @@ EXCLUDES=(
   # tracked private / EE paths
   '.lovable' 'AGENTS.md' 'public/brand' 'public/product-hunt'
   '.github/workflows/sync-mirror.yml'
-  'src/ee' 'ee' 'supabase/migrations' 'src/routeTree.gen.ts'
+  'src/ee' 'supabase/migrations' 'src/routeTree.gen.ts'
   'src/routes/api/public/hooks/reset-demo.ts'
   'src/routes/api/public/hooks/lifecycle-emails.ts'
   'src/routes/api/public/webhooks.stripe.ts'

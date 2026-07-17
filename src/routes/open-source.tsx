@@ -106,7 +106,7 @@ function OpenSourcePage() {
               asChild
               size="lg"
               variant="outline"
-              className="rounded-none border-2 border-ink/20 bg-transparent px-6 py-6 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+              className="rounded-none border-2 border-ink/20 bg-transparent px-6 py-6 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
             >
               <Link to="/auth">Try the hosted version</Link>
             </Button>
@@ -274,7 +274,7 @@ function OpenSourcePage() {
             <Button
               asChild
               variant="outline"
-              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
             >
               <a
                 href={`${GITHUB_URL}/blob/main/docs/self-host.md`}
@@ -288,7 +288,7 @@ function OpenSourcePage() {
             <Button
               asChild
               variant="outline"
-              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
             >
               <a href={`${GITHUB_URL}/blob/main/docs/byok.md`} target="_blank" rel="noreferrer">
                 BYOK setup
@@ -298,7 +298,7 @@ function OpenSourcePage() {
             <Button
               asChild
               variant="outline"
-              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
             >
               <a
                 href={`${GITHUB_URL}/blob/main/docs/architecture.md`}
