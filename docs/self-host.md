@@ -19,7 +19,7 @@ Anthropic directly. There is no managed AI key path in the open build.
 ## 1. Clone and install
 
 ```bash
-git clone https://github.com/visaworker/visaworker.git
+git clone https://github.com/Job-Protocol/visaworker.git
 cd visaworker
 bun install
 ```

@@ -3,7 +3,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { SealMark } from "@/components/SealMark";
 import { SiteHeader } from "@/components/SiteHeader";
-import { GitHubStarButton } from "@/components/GitHubStarButton";
 import {
   ArrowUpRight,
   Check,
@@ -18,7 +17,7 @@ import {
   Terminal,
 } from "lucide-react";
 
-const GITHUB_URL = "https://github.com/visaworker/visaworker";
+const GITHUB_URL = "https://github.com/Job-Protocol/visaworker";
 
 export const Route = createFileRoute("/open-source")({
   component: OpenSourcePage,
@@ -58,8 +57,9 @@ function OpenSourcePage() {
       {/* Nav */}
       <SiteHeader
         current="open-source"
-        ctaSlot={<GitHubStarButton />}
+        cta={{ label: "View on GitHub", href: GITHUB_URL, external: true }}
       />
+
 
 
 
@@ -108,7 +108,7 @@ function OpenSourcePage() {
               variant="outline"
               className="rounded-none border-2 border-ink/20 bg-transparent px-6 py-6 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
             >
-              <Link to="/">Try the hosted version</Link>
+              <Link to="/auth">Try the hosted version</Link>
             </Button>
           </div>
 
@@ -637,7 +637,7 @@ const AGENTS: { name: string; domain: string; href: (prompt: string) => string; 
 
 const AGENT_PROMPT = `Self-host VisaWorker for me. It's a TanStack Start app on Cloudflare Workers, Supabase for data, BYOK Anthropic key.
 
-1. Clone https://github.com/visaworker/visaworker and cd into it.
+1. Clone https://github.com/Job-Protocol/visaworker and cd into it.
 2. Run \`bun install\` (or \`npm install\` if bun is missing).
 3. Create .env from .env.example. Ask me for:
    - Supabase URL, publishable key, service-role key, and project ref

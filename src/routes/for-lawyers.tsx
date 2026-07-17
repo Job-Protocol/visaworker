@@ -575,7 +575,7 @@ function DashboardMock() {
         <aside className="border-r border-paper/10 p-4">
           <div className="mb-3 text-[9px] font-bold uppercase tracking-[0.22em] text-paper/40">Filter</div>
           <ul className="space-y-2 text-[11px] text-paper/70">
-            <li className="font-semibold text-gold">All (24)</li>
+            <li className="font-semibold text-paper">All (24)</li>
             <li>O-1A · 11</li>
             <li>EB-1A · 8</li>
             <li>NIW · 5</li>
@@ -584,9 +584,9 @@ function DashboardMock() {
         </aside>
         <div className="p-4">
           {[
-            { name: "Iyer, A.", type: "O-1A", who: "MW", risk: "Low", pct: 82, tone: "text-gold" },
-            { name: "Chen, L.", type: "EB-1A", who: "JR", risk: "Med", pct: 54, tone: "text-paper" },
-            { name: "Okafor, N.", type: "NIW", who: "MW", risk: "Low", pct: 91, tone: "text-gold" },
+            { name: "Iyer, A.", type: "O-1A", who: "MW", risk: "Low", pct: 82, tone: "text-paper/80" },
+            { name: "Chen, L.", type: "EB-1A", who: "JR", risk: "Med", pct: 54, tone: "text-paper/60" },
+            { name: "Okafor, N.", type: "NIW", who: "MW", risk: "Low", pct: 91, tone: "text-paper/80" },
             { name: "Silva, R.", type: "O-1A", who: "AK", risk: "High", pct: 38, tone: "text-crimson" },
           ].map((r) => (
             <div
@@ -603,11 +603,12 @@ function DashboardMock() {
               <div className={`w-12 text-[10px] font-bold uppercase tracking-widest ${r.tone}`}>{r.risk}</div>
               <div className="w-20">
                 <div className="h-1 w-full bg-paper/10">
-                  <div className="h-full bg-gold" style={{ width: `${r.pct}%` }} />
+                  <div className="h-full bg-crimson" style={{ width: `${r.pct}%` }} />
                 </div>
               </div>
             </div>
           ))}
+
         </div>
       </div>
     </MockFrame>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Github, Star } from "lucide-react";
 
-const REPO = "visaworker/visaworker";
+const REPO = "Job-Protocol/visaworker";
 
 function formatStars(n: number): string {
   if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;

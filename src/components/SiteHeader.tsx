@@ -1,7 +1,6 @@
-import type { ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 import { SealMark } from "@/components/SealMark";
 import { GitHubStarInline } from "@/components/GitHubStarButton";
 
@@ -15,8 +14,6 @@ interface SiteHeaderProps {
     href: string;
     external?: boolean;
   };
-  /** Optional custom node rendered in place of the default crimson CTA button. */
-  ctaSlot?: ReactNode;
 }
 
 const DEFAULT_CTA = {
@@ -31,29 +28,37 @@ const DEFAULT_CTA = {
  * Utility strip (GitHub · Open source · FAQ / For lawyers · Sign in) sits above
  * the main row with wordmark + primary anchors + CTA. Highlights the active page.
  */
-export function SiteHeader({ current = null, cta = DEFAULT_CTA, ctaSlot }: SiteHeaderProps) {
+export function SiteHeader({ current = null, cta = DEFAULT_CTA }: SiteHeaderProps) {
   const isActive = (page: CurrentPage) =>
     current === page ? "text-crimson" : "hover:text-ink";
 
   const primaryActive = (page: CurrentPage) =>
     current === page ? "text-crimson" : "text-ink/70 hover:text-crimson";
 
-  const CtaLink = () => {
+  const CtaLink = ({ className = "" }: { className?: string }) => {
     const inner = (
       <>
-        <span className="sm:hidden">{cta.shortLabel ?? cta.label}</span>
-        <span className="hidden sm:inline">{cta.label}</span>
-        <ArrowUpRight className="ml-1 h-3.5 w-3.5" />
+        <span>{cta.label}</span>
+        <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </>
     );
+    const classes = `group inline-flex items-center gap-2 rounded-none border-b-2 border-crimson-deep bg-crimson px-5 py-3 text-[11px] font-bold uppercase tracking-[0.2em] text-paper shadow-none transition-all hover:-translate-y-px hover:bg-crimson-deep ${className}`;
     if (cta.external || cta.href.startsWith("#") || cta.href.startsWith("http")) {
       return (
-        <a href={cta.href} {...(cta.external ? { target: "_blank", rel: "noreferrer" } : {})}>
+        <a
+          href={cta.href}
+          className={classes}
+          {...(cta.external ? { target: "_blank", rel: "noreferrer" } : {})}
+        >
           {inner}
         </a>
       );
     }
-    return <Link to={cta.href}>{inner}</Link>;
+    return (
+      <Link to={cta.href} className={classes}>
+        {inner}
+      </Link>
+    );
   };
 
   return (
@@ -64,8 +69,12 @@ export function SiteHeader({ current = null, cta = DEFAULT_CTA, ctaSlot }: SiteH
           <div className="flex items-center gap-5">
             <GitHubStarInline />
             <span className="h-3 w-px bg-ink/10" aria-hidden />
-            <Link to="/open-source" className={`transition-colors ${isActive("open-source")}`}>
+            <Link
+              to="/open-source"
+              className="group inline-flex items-center gap-1 rounded-none border border-crimson/40 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-crimson transition-all hover:bg-crimson hover:text-paper"
+            >
               Open source
+              <ArrowUpRight className="h-2.5 w-2.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
             <span className="h-3 w-px bg-ink/10" aria-hidden />
             <Link to="/" hash="faq" className="transition-colors hover:text-ink">
@@ -112,15 +121,7 @@ export function SiteHeader({ current = null, cta = DEFAULT_CTA, ctaSlot }: SiteH
             >
               Sign in
             </Link>
-            {ctaSlot ?? (
-              <Button
-                asChild
-                size="sm"
-                className="rounded-none border-b-2 border-crimson-deep bg-crimson px-3 py-4 text-[10px] font-bold uppercase tracking-[0.14em] text-paper shadow-none transition-all hover:-translate-y-px hover:bg-crimson-deep sm:px-5 sm:py-5 sm:text-[11px] sm:tracking-[0.18em]"
-              >
-                <CtaLink />
-              </Button>
-            )}
+            {<CtaLink />}
           </div>
         </div>
       </div>

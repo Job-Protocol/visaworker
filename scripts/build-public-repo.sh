@@ -67,6 +67,7 @@ EXCLUDES=(
   '.turbo' '.cache' '.env' '.env.local' '.env.development' '.env.production'
   # tracked private / EE paths
   '.lovable' 'AGENTS.md' 'public/brand' 'public/product-hunt'
+  '.github/workflows/sync-mirror.yml'
   'src/ee' 'ee' 'supabase/migrations' 'src/routeTree.gen.ts'
   'src/routes/api/public/hooks/reset-demo.ts'
   'src/routes/api/public/hooks/lifecycle-emails.ts'
