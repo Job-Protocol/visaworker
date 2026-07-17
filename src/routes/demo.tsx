@@ -5,7 +5,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { Loader2, ShieldAlert } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { DEMO_EMAIL, DEMO_PASSWORD, DEMO_PROJECT_ID, DEMO_USER_ID } from "@/lib/demo-config";
+import { DEMO_PROJECT_ID, DEMO_USER_ID } from "@/lib/demo-config";
+import { demoSignIn } from "@/lib/demo-auth";
 import { SealMark } from "@/components/SealMark";
 import { Button } from "@/components/ui/button";
 
@@ -64,11 +65,14 @@ function DemoEntry() {
           await supabase.auth.signOut();
         }
         if (!existing.user || existing.user.id !== DEMO_USER_ID) {
-          const { error: signInError } = await supabase.auth.signInWithPassword({
-            email: DEMO_EMAIL,
-            password: DEMO_PASSWORD,
+          // The demo password never reaches the browser: the server signs in
+          // and returns only the resulting session tokens, which we adopt.
+          const session = await demoSignIn();
+          const { error: setSessionError } = await supabase.auth.setSession({
+            access_token: session.access_token,
+            refresh_token: session.refresh_token,
           });
-          if (signInError) throw signInError;
+          if (setSessionError) throw setSessionError;
         }
         navigate({
           to: "/projects/$id",

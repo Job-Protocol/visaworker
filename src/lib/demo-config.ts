@@ -3,14 +3,12 @@
 // lands in the real /projects/$id workspace. A nightly cron resets the
 // project back to its seed state.
 //
-// The password is intentionally embedded — it protects nothing (every
-// visitor is entitled to use the demo). It must match the value stored in
-// the DEMO_USER_PASSWORD server secret and the value hashed into
-// auth.users in the demo-seed migration.
+// The account's password is NOT stored here. It is a real credential (it
+// matches the value hashed into auth.users), so it lives only in the server
+// env (DEMO_USER_PASSWORD) and the sign-in happens server-side — see
+// src/lib/demo-auth.ts. Only non-secret identifiers belong in this file.
 export const DEMO_USER_ID = "00000000-0000-0000-0000-0000000000d1";
 export const DEMO_PROJECT_ID = "00000000-0000-0000-0000-0000000000d2";
-export const DEMO_EMAIL = "demo@visaworker.ai";
-export const DEMO_PASSWORD = "vW-demo-4f8e9a2b7c3d1e6aB5Kq";
 
 export function isDemoUser(userId: string | null | undefined): boolean {
   return !!userId && userId === DEMO_USER_ID;

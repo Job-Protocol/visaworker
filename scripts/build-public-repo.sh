@@ -33,7 +33,7 @@
 # routes on the first `vite build`. The public CI (.github/workflows/ci.yml)
 # runs the build before the typecheck for this reason.
 #
-# What it does NOT do (manual follow-ups called out in .lovable/oss-audit.md):
+# What it does NOT do (manual follow-ups):
 #   - Split supabase/migrations into open-only + EE (schema baseline
 #     consolidation happens by hand; the current script omits migrations
 #     entirely and prints a reminder).
@@ -67,7 +67,11 @@ EXCLUDES=(
   '.turbo' '.cache' '.env' '.env.local' '.env.development' '.env.production'
   # tracked private / EE paths
   '.lovable' 'AGENTS.md' 'public/brand' 'public/product-hunt'
-  '.github/workflows/sync-mirror.yml'
+  # Never sync workflow files — the mirror owns its own CI, and pushing
+  # workflow changes requires a PAT with the `workflow` scope. Keeping the
+  # push PAT scoped down (no `workflow`) is safer; the mirror's ci.yml stays
+  # stable regardless of changes in the private repo.
+  '.github/workflows'
   'src/ee' 'supabase/migrations' 'src/routeTree.gen.ts'
   'src/routes/api/public/hooks/reset-demo.ts'
   'src/routes/api/public/hooks/lifecycle-emails.ts'
@@ -176,7 +180,7 @@ MANUAL FOLLOW-UPS before first push:
   1. Verify the mirror builds:
        cd $DEST && bun install --frozen-lockfile && bun run build && bunx tsc --noEmit
   2. Run gitleaks over $DEST (full history scan)
-  3. Rotate BYOK_ENCRYPTION_KEY in the live DB (see .lovable/oss-audit.md)
+  3. Rotate BYOK_ENCRYPTION_KEY in the live DB (optional; see SECURITY.md)
   4. cd $DEST && git init && git add -A && git commit -m "Initial commit"
 
   (The open-schema baseline is installed automatically from

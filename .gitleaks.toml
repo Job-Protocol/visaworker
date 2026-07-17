@@ -1,0 +1,35 @@
+# gitleaks configuration for visaworker-connect
+#
+# Starts from gitleaks' built-in ruleset and layers on an allowlist for values
+# that are safe by design. Keep this list surgical: allowlist specific known
+# values, never whole secret classes, so a genuinely leaked credential (e.g. a
+# Supabase service_role key) still trips the scan.
+
+title = "visaworker-connect"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Known-safe values and non-secret files"
+
+# Files that never contain real secrets.
+paths = [
+  # Documented placeholders like "your-anon-key" / "your-service-role-key".
+  '''\.env\.example$''',
+  # Lockfile: integrity hashes trip the high-entropy heuristics, not secrets.
+  '''^bun\.lock$''',
+  # Static content module: visa-petition section templates. Its object
+  # literals ({ key: "eb2_qualification", title: … }) trip the noisy
+  # generic-api-key rule — the "key" here is a section identifier, not a
+  # credential. No runtime secret belongs in this file.
+  '''^src/lib/petition-templates\.ts$''',
+]
+
+# Supabase *publishable* (anon) keys are designed to ship in the browser bundle
+# (their JWT payload is role:"anon") and are not secrets. These are the exact
+# project keys committed in .env — allowlisted by full value so any OTHER token,
+# including a service_role key, is still reported.
+regexes = [
+  '''eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9\.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducGxzaXp2enlseWZkZGpoeGxsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI5MDE5MDIsImV4cCI6MjA5ODQ3NzkwMn0\.kYdazPnW2HlxDF0F_oWHTXLna0AJ7Q0m9DIJarHkSIQ''',
+]

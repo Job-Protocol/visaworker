@@ -22,7 +22,9 @@ function useStars() {
         setStars(count);
         try {
           window.sessionStorage.setItem("gh-stars", String(count));
-        } catch {}
+        } catch {
+          // sessionStorage can throw (quota, private mode) — caching is best-effort.
+        }
       })
       .catch(() => {});
     return () => {
