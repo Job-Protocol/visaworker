@@ -128,33 +128,33 @@ export const Route = createFileRoute("/")({
   component: Landing,
   head: () => ({
     meta: [
-      { title: "visaworker.ai — AI drafting agent for your immigration petition" },
+      { title: "visaworker.ai — Open-source AI drafting agent for your immigration petition" },
       {
         name: "description",
         content:
-          "An AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Start free; unlock for $249.",
+          "An open-source AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Free to start or self-host; $249 to unlock hosted.",
       },
       {
         name: "keywords",
         content:
-          "O-1A petition, EB-1A petition, NIW petition, extraordinary ability visa, immigration drafting agent, AI immigration petition, self-petition visa",
+          "O-1A petition, EB-1A petition, NIW petition, extraordinary ability visa, immigration drafting agent, AI immigration petition, self-petition visa, open source immigration software",
       },
-      { property: "og:title", content: "visaworker.ai — AI drafting agent for your immigration petition" },
+      { property: "og:title", content: "visaworker.ai — Open-source AI drafting agent for your immigration petition" },
       {
         property: "og:description",
         content:
-          "An AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Start free; unlock for $249.",
+          "An open-source AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Free to start or self-host; $249 to unlock hosted.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://visaworker.ai/" },
       { property: "og:site_name", content: "visaworker.ai" },
       { property: "og:locale", content: "en_US" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "visaworker.ai — AI drafting agent for your immigration petition" },
+      { name: "twitter:title", content: "visaworker.ai — Open-source AI drafting agent for your immigration petition" },
       {
         name: "twitter:description",
         content:
-          "An AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Start free; unlock for $249.",
+          "An open-source AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Free to start or self-host; $249 to unlock hosted.",
       },
       { property: "og:image", content: "https://visaworker.ai/og-home.png" },
       { property: "og:image:width", content: "1200" },
@@ -270,7 +270,7 @@ function Landing() {
           <div className="relative">
             <div className="fade-in-up mb-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-navy/25 bg-white/70 px-4 py-1.5 text-[10.5px] font-semibold uppercase tracking-[0.24em] text-navy backdrop-blur md:mb-[clamp(1rem,2.5vh,2rem)]">
               <Star className="h-3 w-3 fill-crimson text-crimson" />
-              <span>AI workspace for O-1A · EB-1A · NIW</span>
+              <span>Open-source AI for O-1A · EB-1A · NIW</span>
             </div>
 
             <h1
@@ -286,7 +286,7 @@ function Landing() {
               className="fade-in-up mt-6 max-w-xl text-base leading-relaxed text-ink/70 sm:mt-8 sm:text-lg md:mt-[clamp(1rem,2.5vh,2rem)] md:text-[clamp(1rem,1.15vw,1.15rem)]"
               style={{ animationDelay: "160ms" }}
             >
-              An AI agent that builds your O-1A, EB-1A, or NIW petition for you. It finds the evidence, structures the case, captures exhibits, and writes every criterion. Free to start; $249 to unlock.
+              An open-source AI agent that builds your O-1A, EB-1A, or NIW petition for you. It finds the evidence, structures the case, captures exhibits, and writes every criterion. Free to start or self-host; $249 to unlock hosted.
             </p>
 
             <div
