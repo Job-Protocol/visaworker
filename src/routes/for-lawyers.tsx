@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { sendLawyerInquiry } from "@/ee";
 import { track } from "@/ee";
+import statueOfLibertyAsset from "@/assets/statue-of-liberty.jpg.asset.json";
 import {
   ArrowUpRight,
   Check,
@@ -140,6 +141,16 @@ function ForLawyers() {
           style={{
             backgroundImage:
               "radial-gradient(circle at 15% 8%, oklch(0.78 0.13 82 / 0.16), transparent 55%), radial-gradient(circle at 85% 92%, oklch(0.51 0.19 27 / 0.09), transparent 60%)",
+          }}
+        />
+        <img
+          src={statueOfLibertyAsset.url}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[-16%] top-1/2 hidden h-[90%] w-auto -translate-y-1/2 select-none object-contain opacity-[0.12] grayscale lg:right-[-8%] lg:block lg:opacity-[0.16]"
+          style={{
+            maskImage: "linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 85%)",
+            WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 85%)",
           }}
         />
         <div className="relative mx-auto max-w-[1100px] px-6 pt-20 pb-24 text-center md:px-10 md:pt-28 md:pb-32">
