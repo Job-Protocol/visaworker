@@ -6,7 +6,7 @@ const HORRORS = [
     source: "Engineer, O-1A",
   },
   {
-    quote: "My attorney's paralegal emailed me three times asking for links I had already sent. Exhibit 17 was still Exhibit 17 in one place and 'see attached' in another.",
+    quote: "My attorney's paralegal emailed me three times asking for links I had already sent. One exhibit was 'Exhibit 17' in the index and 'see attached' in the brief.",
     source: "Researcher, EB-1A",
   },
   {
@@ -42,11 +42,12 @@ export function LandingTestimonialsSection() {
           <div>
             <div className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] text-gold">
               <span className="h-px w-8 bg-gold" />
-              <span>04</span>
             </div>
 
             <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-paper sm:text-4xl md:text-5xl">
-              The horror stories are real. <span className="italic text-crimson">So is the relief.</span>
+              The horror stories are real.
+              <br />
+              <span className="italic text-crimson">So is the relief.</span>
             </h2>
           </div>
           <p className="text-[15px] leading-relaxed text-paper/70 md:text-lg">

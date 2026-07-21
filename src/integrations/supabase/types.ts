@@ -199,6 +199,87 @@ export type Database = {
           },
         ]
       }
+      firms: {
+        Row: {
+          created_at: string
+          founded_year: number | null
+          hq: string | null
+          id: string
+          is_active: boolean
+          is_partner: boolean
+          kind: string
+          logo_url: string | null
+          name: string
+          notes: string | null
+          offices: string | null
+          partner_blurb: string | null
+          partner_discount_label: string | null
+          partner_min_discount_pct: number | null
+          price_high_usd: number | null
+          price_label: string
+          price_low_usd: number | null
+          slug: string
+          sort_order: number
+          success_rate_label: string | null
+          transparency: string
+          updated_at: string
+          visa_types: string[]
+          website_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          founded_year?: number | null
+          hq?: string | null
+          id?: string
+          is_active?: boolean
+          is_partner?: boolean
+          kind: string
+          logo_url?: string | null
+          name: string
+          notes?: string | null
+          offices?: string | null
+          partner_blurb?: string | null
+          partner_discount_label?: string | null
+          partner_min_discount_pct?: number | null
+          price_high_usd?: number | null
+          price_label?: string
+          price_low_usd?: number | null
+          slug: string
+          sort_order?: number
+          success_rate_label?: string | null
+          transparency?: string
+          updated_at?: string
+          visa_types?: string[]
+          website_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          founded_year?: number | null
+          hq?: string | null
+          id?: string
+          is_active?: boolean
+          is_partner?: boolean
+          kind?: string
+          logo_url?: string | null
+          name?: string
+          notes?: string | null
+          offices?: string | null
+          partner_blurb?: string | null
+          partner_discount_label?: string | null
+          partner_min_discount_pct?: number | null
+          price_high_usd?: number | null
+          price_label?: string
+          price_low_usd?: number | null
+          slug?: string
+          sort_order?: number
+          success_rate_label?: string | null
+          transparency?: string
+          updated_at?: string
+          visa_types?: string[]
+          website_url?: string | null
+        }
+        Relationships: []
+      }
       letter_events: {
         Row: {
           actor: string
@@ -384,6 +465,51 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      partner_firms: {
+        Row: {
+          blurb: string
+          created_at: string
+          discount_label: string
+          id: string
+          is_active: boolean
+          location: string | null
+          min_discount_pct: number | null
+          name: string
+          sort_order: number
+          updated_at: string
+          visa_types: string[]
+          website_url: string | null
+        }
+        Insert: {
+          blurb?: string
+          created_at?: string
+          discount_label: string
+          id?: string
+          is_active?: boolean
+          location?: string | null
+          min_discount_pct?: number | null
+          name: string
+          sort_order?: number
+          updated_at?: string
+          visa_types?: string[]
+          website_url?: string | null
+        }
+        Update: {
+          blurb?: string
+          created_at?: string
+          discount_label?: string
+          id?: string
+          is_active?: boolean
+          location?: string | null
+          min_discount_pct?: number | null
+          name?: string
+          sort_order?: number
+          updated_at?: string
+          visa_types?: string[]
+          website_url?: string | null
+        }
+        Relationships: []
       }
       profiles: {
         Row: {

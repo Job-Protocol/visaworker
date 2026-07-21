@@ -4,6 +4,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { Button } from "@/components/ui/button";
 import { SealMark } from "@/components/SealMark";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
@@ -57,6 +58,65 @@ export const Route = createFileRoute("/for-lawyers")({
       { name: "twitter:image:alt", content: "visaworker.ai — the AI drafting agent your firm hands to associates." },
     ],
     links: [{ rel: "canonical", href: "https://visaworker.ai/for-lawyers" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: [
+            {
+              "@type": "Question",
+              name: "Does this replace our associates?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. visaworker.ai is a drafting tool your associates use to move faster. It structures the petition, captures exhibits, and writes a first draft in your firm's voice. A lawyer still reviews, edits, and signs every filing.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How do the three free cases work?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Every law practice that opens a firm account can run its first three O-1A, EB-1A, or NIW petitions through the workspace at no charge. No credit card required. After that, you move to a per-seat subscription.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Is visaworker.ai a law firm or referral service?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "No. We are a software company, not a law firm. We do not practice law, give legal advice, or split fees with lawyers. Our Find-a-Lawyer directory is a flat advertising listing, not a referral service.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Can the compiled petition carry our letterhead?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Yes. Compiled PDFs are white-label by default. Your firm's cover, letterhead, tab order, and colors appear on the filed pages. Nothing about the output suggests it was drafted anywhere but your office.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "How does client-paid billing work?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "You open the matter inside your firm dashboard and send the client a payment link. They pay visaworker.ai directly for that matter's hosted drafting; the file stays in your dashboard, under your brand, with no charge on your invoice.",
+              },
+            },
+            {
+              "@type": "Question",
+              name: "Where does client data live?",
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: "Each firm workspace is isolated. Data is encrypted in transit and at rest, never used to train models, and exportable at any time. You control who inside your firm can see each matter.",
+              },
+            },
+          ],
+        }),
+      },
+    ],
   }),
 });
 
@@ -260,6 +320,73 @@ function ForLawyers() {
       </section>
 
 
+      {/* Directory listing — advertising, not referral fees */}
+      <section className="border-t border-ink/10 bg-paper py-24 md:py-28">
+        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+          <div className="grid gap-12 md:grid-cols-[1.1fr_1fr] md:items-start">
+            <div>
+              <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-crimson">Get found</div>
+              <h2 className="mt-4 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
+                Get listed in the <span className="italic text-crimson">Find-a-Lawyer directory.</span>
+              </h2>
+              <p className="mt-5 text-[15px] leading-relaxed text-ink/70 md:text-lg">
+                Founders, researchers, and engineers land on{" "}
+                <Link to="/find-a-lawyer" className="text-crimson underline decoration-crimson/30 underline-offset-4 hover:decoration-crimson">
+                  visaworker.ai/find-a-lawyer
+                </Link>{" "}
+                looking for O-1, EB-1A, and NIW counsel with transparent pricing. A featured listing puts your firm at the top of the results with your logo, price band, visa focus, and a link to your intake.
+              </p>
+
+              <div className="mt-8 border-l-2 border-navy/40 bg-navy/5 p-5 text-[13px] leading-relaxed text-ink/75">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.24em] text-navy">
+                  <ShieldCheck className="h-3.5 w-3.5" />
+                  How this stays on the right side of Rule 7.2
+                </div>
+                <p className="mt-3">
+                  This is a <strong>flat advertising fee</strong> — the reasonable cost of a directory listing, paid in advance regardless of whether any client ever contacts you. It is <strong>not</strong> a referral fee, a per-lead charge, or a share of any legal fee you earn. We don't recommend one lawyer over another for compensation, we don't screen or match clients to firms, and nothing you pay is contingent on retention or outcome. Under ABA Model Rule 7.2(b)(1) and its state analogues, this is treated like any other bar-approved directory or print ad.
+                </p>
+                <p className="mt-3 text-ink/60">
+                  Some jurisdictions (New York, Texas, Florida, and others) require specific disclaimer language on lawyer advertising. You are responsible for confirming compliance in every state you're licensed in; we'll adjust listing copy on request.
+                </p>
+              </div>
+            </div>
+
+            <div className="border border-ink/15 bg-parchment p-8 shadow-plate md:p-10">
+              <div className="text-[10px] font-bold uppercase tracking-[0.24em] text-navy">Featured listing</div>
+              <h3 className="mt-3 font-serif text-2xl leading-tight text-ink md:text-3xl">
+                Flat annual fee. <span className="italic text-crimson">No per-client charge.</span>
+              </h3>
+              <p className="mt-5 font-serif text-2xl text-crimson">From $1,200 / year</p>
+              <p className="mt-1 text-sm text-ink/60">Billed once. Renews annually. Cancel anytime.</p>
+              <ul className="mt-6 space-y-3">
+                {[
+                  "Firm logo, price band, and visa focus on /find-a-lawyer",
+                  "Priority sort above unfeatured firms",
+                  "Direct link to your consultation intake — we don't touch it",
+                  "Quarterly directory impression report",
+                  "No per-lead fee, no fee-splitting, no client screening",
+                ].map((it) => (
+                  <li key={it} className="flex items-start gap-2 text-sm text-ink/80">
+                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-crimson" strokeWidth={3} />
+                    <span>{it}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                asChild
+                className="mt-8 h-12 w-full rounded-none bg-ink px-6 text-[11px] font-bold uppercase tracking-[0.2em] text-paper hover:bg-crimson"
+              >
+                <a href="#contact" onClick={() => track("for_lawyers_directory_cta_clicked", { location: "directory_section" })}>
+                  Request a listing
+                  <ArrowUpRight className="ml-1.5 h-4 w-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
       {/* Features */}
       <section className="bg-paper py-24 md:py-28">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10">
@@ -277,6 +404,47 @@ function ForLawyers() {
             <Feature icon={Sparkles} title="Drafts in your voice" body="Tune tone and preferences at the firm level once. Every associate's draft comes out consistent." />
             <Feature icon={Wallet} title="Flexible billing" body="Per-seat firm subscription, or per-matter client-paid. Mix both across cases without switching tools." />
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="relative z-10 bg-paper py-24 md:py-28">
+        <div className="mx-auto max-w-[1100px] px-6 md:px-10">
+          <div className="mb-12 grid gap-10 md:grid-cols-[1fr_1.6fr] md:items-end">
+            <div>
+              <SectionTag num="05" color="navy">Questions</SectionTag>
+              <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
+                The six <span className="italic text-crimson">firms ask.</span>
+              </h2>
+            </div>
+          </div>
+
+          <dl className="border-t border-ink/15">
+            <FaqItem
+              q="Does this replace our associates?"
+              a="No. visaworker.ai is a drafting tool your associates use to move faster. It structures the petition, captures exhibits, and writes a first draft in your firm's voice. A lawyer still reviews, edits, and signs every filing."
+            />
+            <FaqItem
+              q="How do the three free cases work?"
+              a="Every law practice that opens a firm account can run its first three O-1A, EB-1A, or NIW petitions through the workspace at no charge. No credit card required. After that, you move to a per-seat subscription."
+            />
+            <FaqItem
+              q="Is visaworker.ai a law firm or referral service?"
+              a="No. We are a software company, not a law firm. We do not practice law, give legal advice, or split fees with lawyers. Our Find-a-Lawyer directory is a flat advertising listing, not a referral service."
+            />
+            <FaqItem
+              q="Can the compiled petition carry our letterhead?"
+              a="Yes. Compiled PDFs are white-label by default. Your firm's cover, letterhead, tab order, and colors appear on the filed pages. Nothing about the output suggests it was drafted anywhere but your office."
+            />
+            <FaqItem
+              q="How does client-paid billing work?"
+              a="You open the matter inside your firm dashboard and send the client a payment link. They pay visaworker.ai directly for that matter's hosted drafting; the file stays in your dashboard, under your brand, with no charge on your invoice."
+            />
+            <FaqItem
+              q="Where does client data live?"
+              a="Each firm workspace is isolated. Data is encrypted in transit and at rest, never used to train models, and exportable at any time. You control who inside your firm can see each matter."
+            />
+          </dl>
         </div>
       </section>
 
@@ -303,18 +471,13 @@ function ForLawyers() {
         </div>
       </section>
 
-      <footer className="border-t border-ink/10 bg-paper">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4 px-6 py-8 text-xs text-ink/60 md:px-10">
-          <p className="tracking-wide">
-            © {new Date().getFullYear()} visaworker.ai · Not legal advice · Your data stays yours.
-          </p>
-          <div className="flex items-center gap-5">
-            <Link to="/" className="hover:text-crimson">Home</Link>
-            <Link to="/terms" className="hover:text-crimson">Terms</Link>
-            <Link to="/privacy" className="hover:text-crimson">Privacy</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter
+        links={[
+          { label: "Home", to: "/" },
+          { label: "Terms", to: "/terms" },
+          { label: "Privacy", to: "/privacy" },
+        ]}
+      />
     </div>
   );
 }
@@ -570,39 +733,39 @@ function DraftMock() {
 
 function DashboardMock() {
   return (
-    <MockFrame dark tag="firm dashboard · 24 active matters">
+    <MockFrame tag="firm dashboard · 24 active matters">
       <div className="grid grid-cols-[120px_1fr]">
-        <aside className="border-r border-paper/10 p-4">
-          <div className="mb-3 text-[9px] font-bold uppercase tracking-[0.22em] text-paper/40">Filter</div>
-          <ul className="space-y-2 text-[11px] text-paper/70">
-            <li className="font-semibold text-paper">All (24)</li>
+        <aside className="border-r border-ink/10 bg-parchment/60 p-4">
+          <div className="mb-3 text-[9px] font-bold uppercase tracking-[0.22em] text-ink/40">Filter</div>
+          <ul className="space-y-2 text-[11px] text-ink/70">
+            <li className="font-semibold text-ink">All (24)</li>
             <li>O-1A · 11</li>
             <li>EB-1A · 8</li>
             <li>NIW · 5</li>
-            <li className="pt-2 text-paper/40">RFE risk ↑</li>
+            <li className="pt-2 text-crimson">RFE risk ↑</li>
           </ul>
         </aside>
         <div className="p-4">
           {[
-            { name: "Iyer, A.", type: "O-1A", who: "MW", risk: "Low", pct: 82, tone: "text-paper/80" },
-            { name: "Chen, L.", type: "EB-1A", who: "JR", risk: "Med", pct: 54, tone: "text-paper/60" },
-            { name: "Okafor, N.", type: "NIW", who: "MW", risk: "Low", pct: 91, tone: "text-paper/80" },
+            { name: "Iyer, A.", type: "O-1A", who: "MW", risk: "Low", pct: 82, tone: "text-ink/70" },
+            { name: "Chen, L.", type: "EB-1A", who: "JR", risk: "Med", pct: 54, tone: "text-ink/60" },
+            { name: "Okafor, N.", type: "NIW", who: "MW", risk: "Low", pct: 91, tone: "text-ink/70" },
             { name: "Silva, R.", type: "O-1A", who: "AK", risk: "High", pct: 38, tone: "text-crimson" },
           ].map((r) => (
             <div
               key={r.name}
-              className="flex items-center gap-3 border-b border-paper/10 py-2.5 text-[11px] last:border-0"
+              className="flex items-center gap-3 border-b border-ink/10 py-2.5 text-[11px] last:border-0"
             >
               <div className="min-w-0 flex-1">
-                <div className="truncate font-serif text-[14px] text-paper">{r.name}</div>
-                <div className="text-[10px] uppercase tracking-widest text-paper/40">{r.type}</div>
+                <div className="truncate font-serif text-[14px] text-ink">{r.name}</div>
+                <div className="text-[10px] uppercase tracking-widest text-ink/40">{r.type}</div>
               </div>
-              <div className="hidden w-14 text-[10px] uppercase tracking-widest text-paper/50 sm:block">
+              <div className="hidden w-14 text-[10px] uppercase tracking-widest text-ink/50 sm:block">
                 {r.who}
               </div>
               <div className={`w-12 text-[10px] font-bold uppercase tracking-widest ${r.tone}`}>{r.risk}</div>
               <div className="w-20">
-                <div className="h-1 w-full bg-paper/10">
+                <div className="h-1 w-full bg-ink/10">
                   <div className="h-full bg-crimson" style={{ width: `${r.pct}%` }} />
                 </div>
               </div>
@@ -614,6 +777,7 @@ function DashboardMock() {
     </MockFrame>
   );
 }
+
 
 function PdfMock() {
   return (
@@ -654,4 +818,38 @@ function PdfMock() {
     </MockFrame>
   );
 }
+
+function SectionTag({
+  num,
+  children,
+  color,
+  onDark,
+}: {
+  num: string;
+  children: React.ReactNode;
+  color: "crimson" | "navy" | "gold";
+  onDark?: boolean;
+}) {
+  const colorClass =
+    color === "crimson" ? "text-crimson" : color === "navy" ? "text-navy" : "text-gold";
+  const lineColor =
+    color === "crimson" ? "bg-crimson" : color === "navy" ? "bg-navy" : "bg-gold";
+  return (
+    <div className={`flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] ${colorClass}`}>
+      <span className={`h-px w-8 ${lineColor}`} />
+      <span>{num}</span>
+      <span className={`opacity-60 ${onDark ? "text-paper/60" : "text-ink/60"}`}>· {children}</span>
+    </div>
+  );
+}
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  return (
+    <div className="grid gap-4 border-b border-ink/15 py-8 md:grid-cols-[1fr_1.6fr] md:gap-10">
+      <dt className="font-serif text-xl leading-tight text-ink md:text-2xl">{q}</dt>
+      <dd className="text-[15px] leading-relaxed text-ink/70 md:text-base">{a}</dd>
+    </div>
+  );
+}
+
 

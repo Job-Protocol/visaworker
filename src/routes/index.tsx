@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
-import { RefBanner, LandingReferralSection } from "@/ee";
+import { RefBanner } from "@/ee";
 import { LandingTestimonialsSection } from "@/components/TestimonialsSection";
 import { GitHubStarButton, GitHubStarInline } from "@/components/GitHubStarButton";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { YouTubeHoverPlayer } from "@/components/youtube-hover-player";
 import { track } from "@/ee";
-import statueOfLiberty from "@/assets/statue-of-liberty.jpg";
+import statueOfLibertyAsset from "@/assets/statue-of-liberty.jpg.asset.json";
+const statueOfLiberty = statueOfLibertyAsset.url;
 import {
   ArrowUpRight,
   Check,
   ChevronRight,
   Compass,
+  DollarSign,
   FileCheck2,
   Handshake,
   Link2,
@@ -132,7 +135,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "An open-source AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Free to start or self-host; $249 to unlock hosted.",
+          "An open-source AI agent that drafts your O-1A, EB-1A, or NIW petition — evidence, exhibits, every criterion. Self-file the packet, or hand it to a partner attorney to review and file at a discounted rate. Free to start or self-host; $249 to unlock hosted drafting.",
       },
       {
         name: "keywords",
@@ -143,7 +146,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "An open-source AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Free to start or self-host; $249 to unlock hosted.",
+          "Draft your O-1A, EB-1A, or NIW petition with an open-source AI agent. Self-file, or hand the draft to a partner attorney at a discounted rate. Free to start or self-host; $249 to unlock hosted drafting.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://visaworker.ai/" },
@@ -154,7 +157,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "An open-source AI agent that builds your O-1A, EB-1A, or NIW petition. It finds the evidence, structures the case, and writes every criterion. Free to start or self-host; $249 to unlock hosted.",
+          "Draft your O-1A, EB-1A, or NIW petition with an open-source AI agent. Self-file, or hand the draft to a partner attorney at a discounted rate. Free to start or self-host; $249 to unlock hosted drafting.",
       },
       { property: "og:image", content: "https://visaworker.ai/og-home.png" },
       { property: "og:image:width", content: "1200" },
@@ -189,7 +192,7 @@ export const Route = createFileRoute("/")({
             applicationCategory: "LegalService",
             operatingSystem: "Web",
             description:
-              "A drafting agent for O-1A, EB-1A, and NIW petitions. Structured sections, web-captured exhibits, citations in sync.",
+              "A drafting agent for O-1A, EB-1A, and NIW petitions. Draft the case with structured sections, web-captured exhibits, and citations in sync — then self-file or hand the draft to a partner attorney at a discounted rate.",
             offers: { "@type": "Offer", price: "249", priceCurrency: "USD" },
           },
           {
@@ -230,10 +233,18 @@ export const Route = createFileRoute("/")({
               },
               {
                 "@type": "Question",
-                name: "Can you introduce me to an immigration lawyer?",
+                name: "How does the partner lawyer network work?",
                 acceptedAnswer: {
                   "@type": "Answer",
-                  text: "You can, if you want, request to be introduced to independent third-party lawyers. We only make introductions on request.",
+                  text: "We partner with independent immigration law firms who can review and file your draft at a pre-negotiated partner rate. You are never required to use a partner — you can self-file the compiled packet. Partners are independent third parties, not employees of visaworker.ai, and any attorney-client relationship is between you and the firm you choose.",
+                },
+              },
+              {
+                "@type": "Question",
+                name: "Can I self-host or use my own API key?",
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: "Yes. The core product is open-source and you can run it on your own infrastructure for free. If you prefer the hosted version, you can also bring your own OpenAI or Anthropic API key and pay nothing for usage. The $249 unlock only applies if you want hosted drafting without supplying your own key.",
                 },
               },
             ],
@@ -277,16 +288,16 @@ function Landing() {
               className="fade-in-up hero-title font-serif text-[2.6rem] leading-[0.98] tracking-[-0.02em] text-ink sm:text-[4rem] sm:leading-[0.94] md:text-[clamp(3.5rem,7.2vw,5.75rem)] md:leading-[0.94]"
               style={{ animationDelay: "80ms" }}
             >
-              A drafting agent for your
+              The drafting agent for
               <br />
-              <span className="italic text-crimson">immigration petition.</span>
+              <span className="italic text-crimson">immigration petitions.</span>
             </h1>
 
             <p
               className="fade-in-up mt-6 max-w-xl text-base leading-relaxed text-ink/70 sm:mt-8 sm:text-lg md:mt-[clamp(1rem,2.5vh,2rem)] md:text-[clamp(1rem,1.15vw,1.15rem)]"
               style={{ animationDelay: "160ms" }}
             >
-              An open-source AI agent that builds your O-1A, EB-1A, or NIW petition for you. It finds the evidence, structures the case, captures exhibits, and writes every criterion. Free to start or self-host; $249 to unlock hosted.
+              An open-source AI agent that structures evidence, captures exhibits, and writes every criterion of a filing-ready petition. Self-file the packet, or hand the draft to a partner attorney to review and file faster and at a discounted rate. Free to start or self-host; $249 to unlock hosted drafting.
             </p>
 
             <div
@@ -317,16 +328,7 @@ function Landing() {
               className="fade-in-up mt-8 text-[10.5px] font-semibold uppercase tracking-[0.22em] text-ink/50 md:mt-[clamp(1rem,2.5vh,2rem)]"
               style={{ animationDelay: "300ms" }}
             >
-              Free to start · Unlock for $249 flat · No subscription · Not a law firm
-            </p>
-            <p
-              className="fade-in-up mt-3 text-[11px] font-medium text-ink/60"
-              style={{ animationDelay: "340ms" }}
-            >
-              Refer a friend and earn $50 back — they get $50 off too.{" "}
-              <Link to="/auth" className="text-crimson underline decoration-crimson/40 underline-offset-2 hover:text-crimson-deep">
-                Get your link
-              </Link>
+              Free to start — open source · $249 hosted — Not a law firm
             </p>
 
 
@@ -369,7 +371,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="mb-14 grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-end md:mb-16">
             <div data-reveal="left">
-              <SectionTag num="01" color="crimson">How it works</SectionTag>
+              <SectionTag color="crimson">How it works</SectionTag>
               <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
                 Four steps to a
                 <br />
@@ -403,8 +405,8 @@ function Landing() {
             <Step
               n="04"
               icon={FileCheck2}
-              title="Compile the PDF."
-              body="Cover, TOC, headers, numbered index — ready to file."
+              title="File — or hand off."
+              body="Self-file the compiled PDF, or send the draft to a partner attorney to review and file."
             />
           </ol>
 
@@ -413,6 +415,70 @@ function Landing() {
             <SectionsMock />
           </div>
 
+
+        </div>
+      </section>
+
+      {/* §01½ — Find a lawyer */}
+      <section className="relative z-10 border-y border-ink/10 bg-paper py-16 md:py-24">
+        <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+          <div className="grid items-center gap-10 md:grid-cols-[1fr_1.25fr] md:gap-16">
+            <div data-reveal="left">
+              <SectionTag color="crimson">Find a lawyer</SectionTag>
+              <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
+                Find an attorney{" "}
+                <span className="italic text-crimson">to review and file.</span>
+              </h2>
+              <p className="mt-5 text-[15px] leading-relaxed text-ink/70 md:text-lg">
+                Self-file the compiled PDF yourself, or consult a partner immigration
+                firm in one click. Because the drafting is already done, they review
+                and file at a discounted partner rate — no opaque five-figure bundle.
+              </p>
+              <div className="mt-8">
+                <Button
+                  asChild
+                  size="lg"
+                  className="group h-14 rounded-none bg-crimson px-6 text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-[6px_6px_0_0_var(--navy)] transition-all hover:-translate-x-0.5 hover:-translate-y-0.5 hover:bg-crimson-deep hover:shadow-[8px_8px_0_0_var(--navy)] sm:px-8 sm:text-[12px] sm:tracking-[0.2em]"
+                >
+                  <Link to="/find-a-lawyer" onClick={() => track("landing_find_lawyer_cta_clicked")}>
+                    Compare firms
+                    <ArrowUpRight className="ml-1.5 h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            <div data-reveal="right" className="relative">
+              <div className="relative overflow-hidden border border-ink/10 bg-parchment p-8 md:p-10">
+                <div aria-hidden className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-crimson/10 blur-2xl" />
+                <div className="relative">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-none bg-navy text-paper">
+                      <Handshake className="h-5 w-5" />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-navy">Partner rate</span>
+                  </div>
+                  <p className="mt-6 font-serif text-2xl leading-snug text-ink md:text-3xl">
+                    “We already built the draft. Just review it and file.”
+                  </p>
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    <span className="inline-flex items-center gap-1.5 border border-ink/10 bg-paper px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-ink/80">
+                      <Check className="h-3.5 w-3.5 text-crimson" />
+                      Transparent fees
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 border border-ink/10 bg-paper px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-ink/80">
+                      <Check className="h-3.5 w-3.5 text-crimson" />
+                      Discounted review & file
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 border border-ink/10 bg-paper px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-ink/80">
+                      <Check className="h-3.5 w-3.5 text-crimson" />
+                      No sales call required
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -421,7 +487,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div data-reveal="scale" className="mx-auto mb-16 max-w-2xl text-center md:mb-20">
             <div className="flex justify-center">
-              <SectionTag num="02" color="navy">What you get</SectionTag>
+              <SectionTag color="navy">What you get</SectionTag>
             </div>
             <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-6xl">
               Everything a filing needs. <span className="italic text-crimson">Nothing that gets in the way.</span>
@@ -464,13 +530,13 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="mb-14 grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-end md:mb-16">
             <div>
-              <SectionTag num="03" color="crimson">Priced against the alternative</SectionTag>
+              <SectionTag color="crimson">Priced against the alternative</SectionTag>
               <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
-                Free to start. <span className="italic text-crimson">$249 to file.</span>
+                Free to start. <span className="italic text-crimson">$249 to unlock.</span>
               </h2>
             </div>
             <p className="text-[15px] leading-relaxed text-ink/70 md:text-lg">
-              Open a case, draft real sections, capture real exhibits — before you decide. Pay only when you're ready to unlock the full budget and download the filing packet.
+              Open a case, draft real sections, capture real exhibits — before you decide. Pay only when you're ready to unlock the full drafting budget and download the compiled packet to self-file or send to an attorney.
             </p>
           </div>
 
@@ -486,7 +552,7 @@ function Landing() {
             <CompareRow
               label="Drafting"
               word="You, from scratch"
-              lawyer="$8K–$15K + weeks"
+              lawyer="$8K–$15K, from scratch"
               us="Agent-drafted, hours"
             />
             <CompareRow
@@ -508,10 +574,17 @@ function Landing() {
               us="First draft the same day"
             />
             <CompareRow
-              label="Cost"
-              word="Free (in dollars)"
-              lawyer="$10,000+"
-              us="$249 flat"
+              label="File it yourself"
+              word="Your time, all of it"
+              lawyer="$8K–$15K bundle"
+              us="$249 drafting, self-file"
+              highlight
+            />
+            <CompareRow
+              label="Attorney review & file"
+              word="n/a"
+              lawyer="$8K–$15K bundle"
+              us="$249 drafting + save thousands"
               highlight
             />
           </div>
@@ -535,30 +608,32 @@ function Landing() {
             <PriceCard
               headline="Unlock one case"
               price="$249"
-              subtitle="We handle the AI. One flat price covers drafting, revisions, and export for a single O-1A, EB-1A, or NIW petition — no key, no metering, no math."
+              subtitle="We handle the AI. One flat price covers drafting, revisions, and export for a single O-1A, EB-1A, or NIW petition — then self-file the packet or hand it to a partner attorney to review and file."
               features={[
                 "We provide & pay for the AI",
                 "Full drafts for every criterion",
                 "Unlimited assistant messages",
                 "Filing-ready PDF export",
+                "Self-file — or share with a partner attorney",
                 "Download source files & exhibits",
-                "Share with your attorney",
+                "+$100 for extra drafting work if you need it",
               ]}
               cta="Unlock — $249"
               accent
             />
             <PriceCard
-              headline="More room"
-              price="+$100"
-              subtitle="Top up drafting budget any time — for long rewrites, extra rounds, or a second visa track."
+              headline="Partner attorney review"
+              price="Save thousands"
+              subtitle="Hand your draft to an independent immigration attorney and save thousands compared to a traditional full-representation bundle. You pay the firm directly — no finder's fees."
               features={[
-                "Add drafting budget as you go",
-                "Same case, no re-purchase",
-                "Stackable — top up as often as you like",
-                "No monthly fees",
-                "No recurring charges",
+                "Save thousands vs. full representation",
+                "Independent attorney review",
+                "File-ready packet handoff",
+                "Optional — self-file instead",
+                "No finder's fees passed to you",
               ]}
-              cta="See how it works"
+              cta="Find a partner attorney"
+              to="/find-a-lawyer"
             />
           </div>
         </div>
@@ -567,8 +642,6 @@ function Landing() {
       {/* §04 — Testimonials / horror stories */}
       <LandingTestimonialsSection />
 
-      {/* Referral section */}
-      <LandingReferralSection />
 
 
 
@@ -581,10 +654,10 @@ function Landing() {
         <div className="mx-auto max-w-[1100px] px-6 md:px-10">
           <div className="mb-12 grid gap-10 md:grid-cols-[1fr_1.6fr] md:items-end">
             <div>
-              <SectionTag num="05" color="navy">Questions</SectionTag>
+              <SectionTag color="navy">Questions</SectionTag>
 
               <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
-                The five <span className="italic text-crimson">everyone asks.</span>
+                The six <span className="italic text-crimson">everyone asks.</span>
               </h2>
             </div>
           </div>
@@ -608,8 +681,12 @@ function Landing() {
               a="Your workspace is isolated to your account and never used to train anything. Encrypted transport, per-case access, and export whenever you want."
             />
             <FaqItem
-              q="Can you introduce me to an immigration lawyer?"
-              a="You can, if you want, request to be introduced to independent third-party lawyers. We only make introductions on request."
+              q="How does the partner lawyer network work?"
+              a="We partner with independent immigration law firms who can review and file your draft at a pre-negotiated partner rate. You are never required to use a partner — you can self-file the compiled packet. Partners are independent third parties, not employees of visaworker.ai, and any attorney-client relationship is between you and the firm you choose."
+            />
+            <FaqItem
+              q="Can I self-host or use my own API key?"
+              a="Yes. The core product is open-source and you can run it on your own infrastructure for free. If you prefer the hosted version, you can also bring your own OpenAI or Anthropic API key and pay nothing for usage. The $249 unlock only applies if you want hosted drafting without supplying your own key."
             />
           </dl>
         </div>
@@ -679,7 +756,7 @@ function Landing() {
         <div className="mx-auto max-w-[1100px] px-6 md:px-10">
           <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-center">
             <div>
-              <SectionTag num="06" color="navy">Open source</SectionTag>
+              <SectionTag color="navy">Open source</SectionTag>
               <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
                 Built in the <span className="italic text-crimson">open.</span>
               </h2>
@@ -693,7 +770,7 @@ function Landing() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+                  className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[11px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
                 >
                   <Link to="/open-source">
                     About open source
@@ -716,7 +793,7 @@ function Landing() {
             Start for free in <span className="italic text-crimson">60 seconds.</span>
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-ink/60">
-            Pick your visa, drop your links, watch the first draft take shape. Pay $249 only when you're ready to file.
+            Pick your visa, drop your links, watch the first draft take shape. Pay $249 only when you're ready to unlock the hosted drafting — then self-file or hand it to a partner attorney.
           </p>
           <div className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <Button
@@ -742,18 +819,7 @@ function Landing() {
       </section>
       </main>
 
-      <footer className="relative z-10 border-t border-ink/10 bg-paper">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4 px-6 py-8 text-xs text-ink/75 md:px-10">
-
-          <p className="tracking-wide">
-            © {new Date().getFullYear()} visaworker.ai · Not legal advice · Your data stays yours.
-          </p>
-          <div className="flex items-center gap-5">
-            <Link to="/terms" className="hover:text-crimson">Terms</Link>
-            <Link to="/privacy" className="hover:text-crimson">Privacy</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }
@@ -768,7 +834,7 @@ function PlatformPreviewSection() {
       <div className="mx-auto max-w-[1400px] px-6 md:px-10">
         <div className="mb-10 grid gap-10 md:grid-cols-[1fr_1.3fr] md:items-end md:mb-14">
           <div data-reveal="left">
-            <SectionTag num="00" color="navy">See the platform</SectionTag>
+            <SectionTag color="navy">See the platform</SectionTag>
             <h2 className="mt-5 font-serif text-3xl leading-[1.05] text-ink sm:text-4xl md:text-5xl">
               The workspace, <span className="italic text-crimson">live.</span>
             </h2>
@@ -868,7 +934,7 @@ function SectionTag({
   color,
   onDark,
 }: {
-  num: string;
+  num?: string;
   children: React.ReactNode;
   color: "crimson" | "navy" | "gold";
   onDark?: boolean;
@@ -880,8 +946,8 @@ function SectionTag({
   return (
     <div className={`flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.28em] ${colorClass}`}>
       <span className={`h-px w-8 ${lineColor}`} />
-      <span>{num}</span>
-      <span className={`opacity-60 ${onDark ? "text-paper/60" : "text-ink/60"}`}>· {children}</span>
+      {num && <span>{num}</span>}
+      <span className={`opacity-60 ${onDark ? "text-paper/60" : "text-ink/60"}`}>{num ? "· " : ""}{children}</span>
     </div>
   );
 }
@@ -1033,7 +1099,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 }
 
 function PriceCard({
-  headline, price, subtitle, features, cta, accent, badge,
+  headline, price, subtitle, features, cta, accent, badge, to = "/auth",
 }: {
   headline: string;
   price: string;
@@ -1042,6 +1108,7 @@ function PriceCard({
   cta: string;
   accent?: boolean;
   badge?: string;
+  to?: string;
 }) {
   return (
     <div
@@ -1092,7 +1159,7 @@ function PriceCard({
               : "border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-paper")
           }
         >
-          <Link to="/auth" onClick={() => track("landing_cta_clicked", { location: "footer" })}>
+          <Link to={to} onClick={() => track("landing_cta_clicked", { location: "footer" })}>
             {cta}
             <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </Link>
@@ -1516,23 +1583,6 @@ function PaperBackdrop() {
           pointer-events: none;
         }
         .shine-btn:hover::after { left: 130%; }
-
-        /* --- Underline sweep on nav anchor links --- */
-        .nav-link { position: relative; }
-        .nav-link::after {
-          content: "";
-          position: absolute;
-          left: 0; right: 0; bottom: -6px;
-          height: 1px;
-          background: currentColor;
-          transform: scaleX(0);
-          transform-origin: right center;
-          transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
-        }
-        .nav-link:hover::after {
-          transform: scaleX(1);
-          transform-origin: left center;
-        }
 
         /* --- Number counter shimmer on step tiles --- */
         @keyframes goldSweep {

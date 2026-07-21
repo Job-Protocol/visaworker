@@ -230,6 +230,28 @@
   animation: stripe-slide 8s linear infinite;
 }
 
+/* ---------- Marketing masthead nav links ---------- */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.nav-link:hover::after,
+.nav-link-active::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
 /* ---------- Strategy / Section pane editors ---------- */
 :is(.strategy-editor, .section-editor) {
   font-family: var(--font-sans);

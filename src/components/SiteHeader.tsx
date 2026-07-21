@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { SealMark } from "@/components/SealMark";
 import { GitHubStarInline } from "@/components/GitHubStarButton";
 
-type CurrentPage = "home" | "open-source" | "for-lawyers" | null;
+type CurrentPage = "home" | "open-source" | "for-lawyers" | "find-a-lawyer" | null;
 
 interface SiteHeaderProps {
   current?: CurrentPage;
@@ -30,19 +30,24 @@ const DEFAULT_CTA = {
  */
 export function SiteHeader({ current = null, cta = DEFAULT_CTA }: SiteHeaderProps) {
   const isActive = (page: CurrentPage) =>
-    current === page ? "text-crimson" : "hover:text-ink";
+    page !== null && current === page ? "text-crimson" : "hover:text-ink";
 
-  const primaryActive = (page: CurrentPage) =>
-    current === page ? "text-crimson" : "text-ink/70 hover:text-crimson";
+  const primaryActive = (page: CurrentPage) => {
+    const active = page !== null && current === page;
+    return active
+      ? "nav-link-active text-crimson"
+      : "text-ink/70 hover:text-crimson";
+  };
 
   const CtaLink = ({ className = "" }: { className?: string }) => {
     const inner = (
       <>
-        <span>{cta.label}</span>
+        <span className="sm:hidden">{cta.shortLabel ?? cta.label}</span>
+        <span className="hidden sm:inline">{cta.label}</span>
         <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
       </>
     );
-    const classes = `group inline-flex items-center gap-2 rounded-none border-b-2 border-crimson-deep bg-crimson px-5 py-3 text-[11px] font-bold uppercase tracking-[0.2em] text-paper shadow-none transition-all hover:-translate-y-px hover:bg-crimson-deep ${className}`;
+    const classes = `group inline-flex items-center gap-2 rounded-none border-b-2 border-crimson-deep bg-crimson px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.18em] text-paper shadow-none transition-all hover:-translate-y-px hover:bg-crimson-deep sm:px-5 sm:py-3 sm:tracking-[0.2em] ${className}`;
     if (cta.external || cta.href.startsWith("#") || cta.href.startsWith("http")) {
       return (
         <a
@@ -76,10 +81,6 @@ export function SiteHeader({ current = null, cta = DEFAULT_CTA }: SiteHeaderProp
               Open source
               <ArrowUpRight className="h-2.5 w-2.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </Link>
-            <span className="h-3 w-px bg-ink/10" aria-hidden />
-            <Link to="/" hash="faq" className="transition-colors hover:text-ink">
-              FAQ
-            </Link>
           </div>
           <div className="flex items-center gap-5">
             <Link to="/for-lawyers" className={`transition-colors ${isActive("for-lawyers")}`}>
@@ -110,6 +111,9 @@ export function SiteHeader({ current = null, cta = DEFAULT_CTA }: SiteHeaderProp
               </Link>
               <Link to="/" hash="pricing" className={`nav-link transition-colors ${primaryActive(null)}`}>
                 Pricing
+              </Link>
+              <Link to="/find-a-lawyer" className={`nav-link transition-colors ${primaryActive("find-a-lawyer")}`}>
+                Find a lawyer
               </Link>
             </nav>
           </div>

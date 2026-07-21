@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { SealMark } from "@/components/SealMark";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import {
   ArrowUpRight,
   Check,
@@ -87,7 +88,9 @@ function OpenSourcePage() {
           <p className="mx-auto mt-8 max-w-[680px] text-[17px] leading-relaxed text-ink/70 md:text-[19px]">
             Every prompt, every tool call, every LaTeX template behind an O-1A, EB-1A, or NIW draft —
             published under a source-available license you can audit, fork, and self-host. Bring your
-            own Anthropic key. Your case never touches our servers.
+            own Anthropic key. Your case never touches our servers. Don't have an attorney yet? The
+            hosted service can match you with a partner immigration law firm at a discounted
+            review-and-file rate.
           </p>
 
 
@@ -194,7 +197,7 @@ function OpenSourcePage() {
               items={[
                 "Managed Anthropic billing (per-case Stripe checkout)",
                 "Referral engine + credits + payouts",
-                "Lawyer-network intros",
+                "Partner law-firm directory + discounted review-and-file intros",
                 "Lifecycle + transactional email templates",
                 "Admin console",
                 "PostHog + Meta Pixel + CAPI wiring",
@@ -414,7 +417,7 @@ function OpenSourcePage() {
                 "No key, no infra, no setup",
                 "Human support during your filing",
                 "Deliverability + tracked case comms",
-                "Optional lawyer-network intro",
+                "Find a partner law firm at a discounted rate",
                 "Same open codebase underneath",
               ]}
               cta={{ label: "Start a case", href: "/", external: false }}
@@ -443,14 +446,14 @@ function OpenSourcePage() {
             <Button
               asChild
               variant="outline"
-              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
             >
               <Link to="/privacy">Privacy policy</Link>
             </Button>
             <Button
               asChild
               variant="outline"
-              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent"
+              className="rounded-none border-2 border-ink/20 bg-transparent px-5 py-5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink shadow-none hover:border-ink hover:bg-transparent hover:text-ink"
             >
               <a
                 href={`${GITHUB_URL}/blob/main/SECURITY.md`}
@@ -465,22 +468,14 @@ function OpenSourcePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-ink/10 bg-paper">
-        <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4 px-6 py-8 text-xs text-ink/60 md:px-10">
-          <p className="tracking-wide">
-            © {new Date().getFullYear()} visaworker.ai · Not legal advice · Your data stays yours.
-          </p>
-          <div className="flex items-center gap-5">
-            <Link to="/" className="hover:text-crimson">Home</Link>
-            <a href={GITHUB_URL} target="_blank" rel="noreferrer" className="hover:text-crimson">
-              GitHub
-            </a>
-            <Link to="/terms" className="hover:text-crimson">Terms</Link>
-            <Link to="/privacy" className="hover:text-crimson">Privacy</Link>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter
+        links={[
+          { label: "Home", to: "/" },
+          { label: "GitHub", href: GITHUB_URL, external: true },
+          { label: "Terms", to: "/terms" },
+          { label: "Privacy", to: "/privacy" },
+        ]}
+      />
     </div>
   );
 }

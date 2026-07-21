@@ -11,7 +11,8 @@ import { ShieldCheck } from "lucide-react";
 import { track } from "@/ee";
 import { evaluateSignupEmail } from "@/ee";
 import { acceptCookiesOnSignIn } from "@/ee";
-import statueOfLiberty from "@/assets/statue-of-liberty.jpg";
+import statueOfLibertyAsset from "@/assets/statue-of-liberty.jpg.asset.json";
+const statueOfLiberty = statueOfLibertyAsset.url;
 
 export const Route = createFileRoute("/auth/")({
   head: () => ({

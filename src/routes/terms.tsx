@@ -324,6 +324,42 @@ function TermsPage() {
         these Terms or the spirit of the program. We may change, pause, or end
         the referral program at any time.
       </p>
+
+      <h2>16. Partner law firm directory</h2>
+      <p>
+        The Service may include a directory of immigration law firms that may
+        offer a discounted rate to VisaWorker users for review and filing of
+        petitions drafted on the Service (each a <strong>"Partner Firm"</strong>).
+        Partner Firms are independent third parties. We do not employ them,
+        supervise their work, or control the advice or services they provide.
+      </p>
+      <p>
+        <strong>
+          We make no guarantees, representations, or warranties about any
+          Partner Firm or the outcome of any matter they handle.
+        </strong>{" "}
+        Listing a firm, marking it as a partner, or displaying its fees does not
+        mean we endorse its services, guarantee its availability, or vouch for
+        the quality of its work. Any engagement you enter into with a Partner
+        Firm is strictly between you and that firm.
+      </p>
+      <p>
+        <strong>
+          We are not responsible for any act, omission, error, delay, or
+          negligence of a Partner Firm, including any legal advice, filing,
+          communication, or representation they provide.
+        </strong>{" "}
+        If you have a dispute with a Partner Firm, you must resolve it directly
+        with that firm. We do not receive referral fees, kickbacks, or any other
+        compensation from Partner Firms for listings, leads, or engagements.
+      </p>
+      <p>
+        You remain solely responsible for choosing any attorney or
+        representative, reviewing any work product, and deciding whether and
+        when to file with USCIS. Nothing on the Service creates an
+        attorney-client relationship between you and us, or between you and any
+        Partner Firm, until you separately engage that firm.
+      </p>
     </LegalLayout>
   );
 }
